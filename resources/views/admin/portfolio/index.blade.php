@@ -24,6 +24,15 @@
     }
     /* Make action buttons compact */
     .btn-group .btn { padding: .35rem .5rem; font-size: .9rem; }
+    /* Pagination visuals */
+    .pagination .page-item.active .page-link {
+        background: var(--primary);
+        border-color: var(--primary);
+        color: #fff;
+        box-shadow: 0 2px 6px rgba(42,95,127,0.12);
+    }
+    .pagination .page-link { color: var(--primary); }
+    .pagination .page-item.disabled .page-link { color: #bdbdbd; }
 </style>
 @endpush
 <div class="container-fluid">
@@ -94,8 +103,37 @@
                 @endforelse
             </div>
 
-            <div class="d-flex justify-content-center mt-4">
-                {{ $portfolios->links() }}
+            <div class="d-flex justify-content-start mt-4">
+                @if ($portfolios->hasPages())
+                    <nav aria-label="Halaman portofolio">
+                        <ul class="pagination pagination-sm">
+                            {{-- Previous Page Link --}}
+                            @if ($portfolios->onFirstPage())
+                                <li class="page-item disabled"><span class="page-link"><i class="fas fa-chevron-left"></i></span></li>
+                            @else
+                                <li class="page-item"><a class="page-link" href="{{ $portfolios->previousPageUrl() }}" rel="prev"><i class="fas fa-chevron-left"></i></a></li>
+                            @endif
+
+                            {{-- Pagination Elements: show current +/-2 pages --}}
+                            @php
+                                $start = max(1, $portfolios->currentPage() - 2);
+                                $end = min($portfolios->lastPage(), $portfolios->currentPage() + 2);
+                            @endphp
+                            @for ($page = $start; $page <= $end; $page++)
+                                <li class="page-item {{ $page == $portfolios->currentPage() ? 'active' : '' }}">
+                                    <a class="page-link" href="{{ $portfolios->url($page) }}">{{ $page }}</a>
+                                </li>
+                            @endfor
+
+                            {{-- Next Page Link --}}
+                            @if ($portfolios->hasMorePages())
+                                <li class="page-item"><a class="page-link" href="{{ $portfolios->nextPageUrl() }}" rel="next"><i class="fas fa-chevron-right"></i></a></li>
+                            @else
+                                <li class="page-item disabled"><span class="page-link"><i class="fas fa-chevron-right"></i></span></li>
+                            @endif
+                        </ul>
+                    </nav>
+                @endif
             </div>
         </main>
     </div>
