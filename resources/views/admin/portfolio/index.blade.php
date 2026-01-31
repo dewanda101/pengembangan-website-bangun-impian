@@ -3,6 +3,29 @@
 @section('title', 'Kelola Portfolio')
 
 @section('content')
+@push('styles')
+<style>
+    /* Compact pagination */
+    .pagination { margin: 0; }
+    .pagination .page-item { margin: 0 0.15rem; }
+    .pagination .page-link {
+        padding: 0.25rem 0.5rem;
+        font-size: 0.92rem;
+        min-width: 36px;
+        height: 36px;
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        border-radius: 6px;
+    }
+    /* Slightly reduce card image height on small screens */
+    @media (max-width: 767px) {
+        .card-img-top { height: 140px !important; }
+    }
+    /* Make action buttons compact */
+    .btn-group .btn { padding: .35rem .5rem; font-size: .9rem; }
+</style>
+@endpush
 <div class="container-fluid">
     <div class="row">
         <aside class="col-auto d-none d-md-block" style="width:260px; background:var(--primary); min-height:100vh; padding:2rem 1rem;">
