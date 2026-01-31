@@ -18,7 +18,7 @@
                 @forelse(\App\Models\Layanan::all() as $layanan)
                     <div class="col-md-6 col-lg-4">
                         <div class="service-card" style="background: white; border-radius: 12px; overflow: hidden; box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1); transition: all 0.3s ease; cursor: pointer;" onmouseover="this.style.transform='translateY(-10px)'; this.style.boxShadow='0 8px 25px rgba(0, 0, 0, 0.15)'" onmouseout="this.style.transform='translateY(0)'; this.style.boxShadow='0 4px 12px rgba(0, 0, 0, 0.1)'">
-                            <div class="card-header" style="background: linear-gradient(135deg, {{ $layanan->icon_color }} 0%, rgba(0,0,0,0.1) 100%); padding: 3rem; text-align: center; color: white;">
+                            <div class="card-header" style="background: linear-gradient(135deg, {{ $layanan->icon_color }} 0%, rgba(0,0,0,0.3) 100%); padding: 3rem; text-align: center; color: white;">
                                 <div style="width:64px; height:64px; margin:0 auto 1rem; display:flex; align-items:center; justify-content:center;">
                                     <svg width="64" height="64" viewBox="0 0 64 64" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true" role="img">
                                         @php
