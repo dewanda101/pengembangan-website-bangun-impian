@@ -109,35 +109,69 @@
         <!-- Main Content -->
         <div class="flex-grow-1">
             <div class="navbar-admin">
-                <h2>Dashboard Admin BangunImpian</h2>
+                <div style="display: flex; justify-content: space-between; align-items: center;">
+                    <h2>Dashboard Admin BangunImpian</h2>
+                    <div>
+                        <span style="color: #666; margin-right: 2rem;">
+                            <i class="fas fa-user-circle"></i> {{ Auth::user()->name }}
+                        </span>
+                        <form action="{{ route('admin.logout') }}" method="POST" style="display: inline;">
+                            @csrf
+                            <button type="submit" class="btn btn-sm btn-outline-danger">
+                                <i class="fas fa-sign-out-alt"></i> Logout
+                            </button>
+                        </form>
+                    </div>
+                </div>
             </div>
 
             <div class="main-content">
+                <!-- NEW MESSAGE NOTIFICATION -->
+                @php
+                    $newMessages = \App\Models\Kontak::where('status', 'baru')->count();
+                @endphp
+                @if($newMessages > 0)
+                    <div style="background: linear-gradient(135deg, #fff3cd 0%, #fff8e1 100%); border: 2px solid #ffc107; border-radius: 12px; padding: 1.5rem; margin-bottom: 2rem; display: flex; justify-content: space-between; align-items: center; box-shadow: 0 4px 12px rgba(255, 193, 7, 0.2);">
+                        <div>
+                            <h5 style="color: #856404; margin: 0 0 0.5rem 0; font-weight: 700;">
+                                <i class="fas fa-bell"></i> Notifikasi Pesanan Baru!
+                            </h5>
+                            <p style="color: #856404; margin: 0; font-size: 1rem;">
+                                Ada <strong>{{ $newMessages }} pesan baru</strong> yang menunggu untuk direspons. Segera tinjau dan hubungi pelanggan!
+                            </p>
+                        </div>
+                        <a href="{{ route('admin.kontak.index') }}" class="btn btn-warning" style="white-space: nowrap; margin-left: 1rem;">
+                            Lihat Pesanan <i class="fas fa-arrow-right"></i>
+                        </a>
+                    </div>
+                @endif
+
                 <div class="row mb-4">
                     <div class="col-md-3">
-                        <div class="stat-card">
+                        <div class="stat-card" onclick="location.href='{{ route('admin.kontak.index') }}'" style="cursor: pointer; transition: all 0.3s ease;" onmouseover="this.style.transform='translateY(-5px)'; this.style.boxShadow='0 8px 16px rgba(0,0,0,0.15)'" onmouseout="this.style.transform='translateY(0)'; this.style.boxShadow='0 2px 8px rgba(0,0,0,0.1)'">
                             <i class="fas fa-envelope" style="font-size: 2.5rem; color: var(--primary);"></i>
                             <div class="number">{{ \App\Models\Kontak::count() }}</div>
                             <h5>Pesan Kontak</h5>
+                            <small style="color: #ff6b6b;">{{ $newMessages }} baru</small>
                         </div>
                     </div>
                     <div class="col-md-3">
-                        <div class="stat-card">
+                        <div class="stat-card" onclick="location.href='{{ route('admin.portfolio.index') }}'" style="cursor: pointer; transition: all 0.3s ease;" onmouseover="this.style.transform='translateY(-5px)'; this.style.boxShadow='0 8px 16px rgba(0,0,0,0.15)'" onmouseout="this.style.transform='translateY(0)'; this.style.boxShadow='0 2px 8px rgba(0,0,0,0.1)'">
                             <i class="fas fa-images" style="font-size: 2.5rem; color: var(--accent);"></i>
                             <div class="number">{{ \App\Models\Portfolio::count() }}</div>
                             <h5>Portfolio</h5>
                         </div>
                     </div>
                     <div class="col-md-3">
-                        <div class="stat-card">
+                        <div class="stat-card" onclick="location.href='{{ route('admin.layanan.index') }}'" style="cursor: pointer; transition: all 0.3s ease;" onmouseover="this.style.transform='translateY(-5px)'; this.style.boxShadow='0 8px 16px rgba(0,0,0,0.15)'" onmouseout="this.style.transform='translateY(0)'; this.style.boxShadow='0 2px 8px rgba(0,0,0,0.1)'">
                             <i class="fas fa-cogs" style="font-size: 2.5rem; color: #27ae60;"></i>
                             <div class="number">{{ \App\Models\Layanan::count() }}</div>
                             <h5>Layanan</h5>
                         </div>
                     </div>
                     <div class="col-md-3">
-                        <div class="stat-card">
-                            <i class="fas fa-check-circle" style="font-size: 2.5rem; color: #3498db;"></i>
+                        <div class="stat-card" onclick="location.href='{{ route('admin.kontak.index') }}'" style="cursor: pointer; transition: all 0.3s ease;" onmouseover="this.style.transform='translateY(-5px)'; this.style.boxShadow='0 8px 16px rgba(0,0,0,0.15)'" onmouseout="this.style.transform='translateY(0)'; this.style.boxShadow='0 2px 8px rgba(0,0,0,0.1)'">
+                            <i class="fas fa-check-circle" style="font-size: 2.5rem; color: #27ae60;"></i>
                             <div class="number">{{ \App\Models\Kontak::where('status', 'selesai')->count() }}</div>
                             <h5>Pesan Selesai</h5>
                         </div>
@@ -145,39 +179,65 @@
                 </div>
 
                 <div class="row">
-                    <div class="col-lg-6">
+                    <div class="col-lg-8">
                         <div class="card p-4">
-                            <h5 class="mb-3" style="color: var(--primary); font-weight: 700;">Pesan Kontak Terbaru</h5>
-                            <div style="max-height: 400px; overflow-y: auto;">
-                                @forelse(\App\Models\Kontak::latest()->take(5)->get() as $kontak)
-                                    <div style="padding: 1rem; border-bottom: 1px solid #eee;">
-                                        <div style="display: flex; justify-content: space-between; margin-bottom: 0.5rem;">
-                                            <strong style="color: var(--primary);">{{ $kontak->nama }}</strong>
-                                            <span style="font-size: 0.85rem; color: #999;">{{ $kontak->created_at->diffForHumans() }}</span>
+                            <h5 class="mb-3" style="color: var(--primary); font-weight: 700;">
+                                <i class="fas fa-inbox"></i> Pesan Kontak Terbaru
+                            </h5>
+                            <div style="max-height: 500px; overflow-y: auto;">
+                                @forelse(\App\Models\Kontak::latest()->take(10)->get() as $kontak)
+                                    <div style="padding: 1.2rem; border-bottom: 1px solid #eee; border-left: 4px solid {{ $kontak->status === 'baru' ? '#ff6b6b' : ($kontak->status === 'dibaca' ? '#95a5a6' : '#27ae60') }};">
+                                        <div style="display: flex; justify-content: space-between; align-items: start; margin-bottom: 0.5rem;">
+                                            <div style="flex: 1;">
+                                                <strong style="color: var(--primary); font-size: 1.05rem;">{{ $kontak->nama }}</strong>
+                                                @if($kontak->status === 'baru')
+                                                    <span style="background: #ff6b6b; color: white; padding: 0.25rem 0.75rem; border-radius: 20px; font-size: 0.75rem; font-weight: 600; margin-left: 0.5rem;">BARU</span>
+                                                @endif
+                                            </div>
+                                            <span style="font-size: 0.85rem; color: #999; white-space: nowrap;">{{ $kontak->created_at->diffForHumans() }}</span>
                                         </div>
-                                        <small style="color: #666;">{{ substr($kontak->pesan, 0, 60) }}...</small>
+                                        <small style="color: #666; display: block; margin-bottom: 0.5rem;">
+                                            <i class="fas fa-phone"></i> {{ $kontak->telepon }}
+                                        </small>
+                                        <small style="color: #888;">{{ substr($kontak->pesan, 0, 80) }}{{ strlen($kontak->pesan) > 80 ? '...' : '' }}</small>
+                                        <div style="margin-top: 0.8rem;">
+                                            <a href="{{ route('admin.kontak.show', $kontak) }}" class="btn btn-sm btn-outline-primary" style="font-size: 0.85rem;">
+                                                <i class="fas fa-eye"></i> Lihat Detail
+                                            </a>
+                                        </div>
                                     </div>
                                 @empty
-                                    <p style="color: #999; text-align: center;">Belum ada pesan</p>
+                                    <p style="color: #999; text-align: center; padding: 2rem;">Belum ada pesan</p>
                                 @endforelse
                             </div>
                         </div>
                     </div>
 
-                    <div class="col-lg-6">
-                        <div class="card p-4">
-                            <h5 class="mb-3" style="color: var(--primary); font-weight: 700;">Quick Actions</h5>
+                    <div class="col-lg-4">
+                        <div class="card p-4 mb-3">
+                            <h5 class="mb-3" style="color: var(--primary); font-weight: 700;">
+                                <i class="fas fa-keyboard"></i> Quick Actions
+                            </h5>
                             <div class="d-grid gap-2">
-                                <a href="{{ route('admin.kontak.index') }}" class="btn btn-outline-primary">
-                                    <i class="fas fa-envelope"></i> Lihat Semua Pesan
+                                <a href="{{ route('admin.kontak.index') }}" class="btn btn-primary">
+                                    <i class="fas fa-envelope"></i> Kelola Pesan
                                 </a>
                                 <a href="{{ route('admin.portfolio.create') }}" class="btn btn-outline-primary">
-                                    <i class="fas fa-plus"></i> Tambah Portfolio
+                                    <i class="fas fa-plus-circle"></i> Tambah Portfolio
                                 </a>
                                 <a href="{{ route('admin.layanan.create') }}" class="btn btn-outline-primary">
-                                    <i class="fas fa-plus"></i> Tambah Layanan
+                                    <i class="fas fa-plus-circle"></i> Tambah Layanan
                                 </a>
                             </div>
+                        </div>
+
+                        <div class="card p-4" style="background: linear-gradient(135deg, var(--primary) 0%, #1e4556 100%); color: white; border: none;">
+                            <h5 class="mb-2" style="font-weight: 700;">
+                                <i class="fas fa-info-circle"></i> Info
+                            </h5>
+                            <p style="margin: 0; font-size: 0.95rem; line-height: 1.6;">
+                                Jangan lupa untuk merespons setiap pesan pelanggan dalam waktu maksimal 24 jam. Tingkatkan kepuasan pelanggan dengan respons cepat!
+                            </p>
                         </div>
                     </div>
                 </div>

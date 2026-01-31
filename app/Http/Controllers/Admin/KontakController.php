@@ -40,7 +40,8 @@ class KontakController extends Controller
 
         Kontak::create($validated);
 
-        return redirect()->route('admin.kontak.index')->with('success', 'Pesan kontak berhasil ditambahkan');
+        // Redirect user to thank you page
+        return redirect()->route('kontak.terima-kasih');
     }
 
     /**

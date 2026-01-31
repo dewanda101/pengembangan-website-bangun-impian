@@ -14,6 +14,7 @@ Route::get('/layanan', fn() => view('layanan'))->name('layanan');
 Route::get('/portofolio', fn() => view('portofolio'))->name('portofolio');
 Route::get('/kontak', fn() => view('kontak'))->name('kontak');
 Route::post('/kontak', [KontakController::class, 'store'])->name('kontak.store');
+Route::get('/kontak/terima-kasih', fn() => view('kontak-terima-kasih'))->name('kontak.terima-kasih');
 
 // Admin Auth
 Route::get('admin/login', [AdminAuthController::class, 'showLogin'])->name('admin.login');
