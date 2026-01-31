@@ -22,7 +22,11 @@
                 @endphp
                 @foreach($kategoriList as $kat)
                     <button class="btn btn-outline-primary" onclick="filterPortofolio('{{ strtolower($kat) }}')" style="margin: 0.5rem;">
-                        {{ ucfirst($kat === 'ibadah' ? 'Tempat Ibadah' : $kat) }}
+                        @php
+                            if (strtolower($kat) === 'ibadah') echo 'Tempat Ibadah';
+                            elseif (strtolower($kat) === 'lainya') echo 'Lainnya';
+                            else echo ucfirst($kat);
+                        @endphp
                     </button>
                 @endforeach
             </div>
@@ -43,7 +47,10 @@
                                     echo strtolower($portfolio->kategori) === 'rumah' ? 'var(--primary)' : (strtolower($portfolio->kategori) === 'komersial' ? 'var(--accent)' : '#27ae60');
                                 @endphp; color: white; padding: 0.5rem 1rem; border-radius: 20px; font-size: 0.85rem; font-weight: 600; margin-bottom: 1rem;">
                                     @php
-                                        echo ucfirst($portfolio->kategori);
+                                        $k = strtolower($portfolio->kategori);
+                                        if ($k === 'ibadah') echo 'Tempat Ibadah';
+                                        elseif ($k === 'lainya') echo 'Lainnya';
+                                        else echo ucfirst($k);
                                     @endphp
                                 </span>
                                 <h4 style="color: var(--primary); margin-bottom: 0.5rem; font-weight: 700;">{{ $portfolio->judul }}</h4>

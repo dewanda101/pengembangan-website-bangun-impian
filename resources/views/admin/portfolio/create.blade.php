@@ -55,6 +55,7 @@
                                 <option value="rumah" {{ old('kategori') == 'rumah' ? 'selected' : '' }}>Rumah Tinggal</option>
                                 <option value="komersial" {{ old('kategori') == 'komersial' ? 'selected' : '' }}>Komersial</option>
                                 <option value="ibadah" {{ old('kategori') == 'ibadah' ? 'selected' : '' }}>Tempat Ibadah</option>
+                                <option value="lainya" {{ old('kategori') == 'lainya' ? 'selected' : '' }}>Lainnya</option>
                             </select>
                             @error('kategori') <span class="invalid-feedback">{{ $message }}</span> @enderror
                         </div>

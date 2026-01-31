@@ -25,6 +25,18 @@ class DatabaseSeeder extends Seeder
             ]);
         }
 
+        // Ensure there is at least one 'lainya' category sample
+        if (!Portfolio::where('kategori', 'lainya')->exists()) {
+            Portfolio::create([
+                'nama_proyek' => 'Proyek Lainnya Contoh',
+                'kategori' => 'lainya',
+                'judul' => 'Proyek Lainnya Contoh',
+                'deskripsi' => 'Contoh proyek untuk kategori lainnya.',
+                'luas' => '150 m²',
+                'tahun' => '2024',
+            ]);
+        }
+
         // Create an admin user for accessing admin panel
         if (!User::where('email', 'admin@local')->exists()) {
             User::create([
