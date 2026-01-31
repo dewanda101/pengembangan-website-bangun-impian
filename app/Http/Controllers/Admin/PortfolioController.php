@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Admin;
 use App\Http\Controllers\Controller;
 use App\Models\Portfolio;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Storage;
 
 class PortfolioController extends Controller
 {
@@ -97,7 +98,7 @@ class PortfolioController extends Controller
     public function destroy(Portfolio $portfolio)
     {
         if ($portfolio->gambar) {
-            \Storage::disk('public')->delete($portfolio->gambar);
+            Storage::disk('public')->delete($portfolio->gambar);
         }
         $portfolio->delete();
         return redirect()->route('admin.portfolio.index')->with('success', 'Proyek portfolio berhasil dihapus');
