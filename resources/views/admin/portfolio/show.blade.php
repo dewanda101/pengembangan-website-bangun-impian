@@ -5,7 +5,7 @@
 @section('content')
 <div class="container-fluid">
     <div class="row">
-        <aside class="col-auto d-none d-md-block" style="width:260px; background:var(--primary); min-height:100vh; padding:2rem 1rem;">
+        <aside class="admin-sidebar d-none d-md-block">
             <div class="text-white mb-4 text-center" style="font-weight:700; font-size:1.1rem;">
                 <i class="fas fa-building"></i> ADMIN
             </div>
@@ -19,8 +19,8 @@
             </nav>
         </aside>
 
-        <main class="col ps-4">
-            <div class="container py-5">
+        <main class="admin-main col ps-4">
+            <div class="container py-3">
                 <div class="row">
                     <div class="col-lg-8 mx-auto">
                         <div class="card shadow-sm">

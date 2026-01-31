@@ -37,7 +37,7 @@
 @endpush
 <div class="container-fluid">
     <div class="row">
-        <aside class="col-auto d-none d-md-block" style="width:260px; background:var(--primary); min-height:100vh; padding:2rem 1rem;">
+        <aside class="admin-sidebar d-none d-md-block">
             <div class="text-white mb-4 text-center" style="font-weight:700; font-size:1.1rem;">
                 <i class="fas fa-building"></i> ADMIN
             </div>
@@ -51,7 +51,7 @@
             </nav>
         </aside>
 
-        <main class="col ps-4">
+        <main class="admin-main col ps-4">
             <div class="d-flex align-items-center justify-content-between mb-4">
                 <div>
                     <h1 class="h3 mb-0" style="color:var(--primary); font-weight:700;">Kelola Portfolio</h1>

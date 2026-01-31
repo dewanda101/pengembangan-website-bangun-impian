@@ -15,6 +15,10 @@
         body { font-family: 'Poppins', sans-serif; background: var(--light); }
         .nav-link.active { background-color: rgba(255,255,255,0.06); border-left: 3px solid var(--accent); }
         .btn-outline-warning { color: #b57a00; border-color: #f0ad4e; }
+        /* Admin layout helpers */
+        .admin-sidebar { position: fixed; left: 0; top: 0; bottom: 0; width: 260px; padding: 2rem 1rem; background: var(--primary); }
+        .admin-main { margin-left: 260px; padding: 1.5rem 2rem; }
+        @media (max-width: 767px) { .admin-sidebar { position: relative; width: 100%; min-height: auto; } .admin-main { margin-left: 0; } }
     </style>
     @stack('styles')
 </head>
