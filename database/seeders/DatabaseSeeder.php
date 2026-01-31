@@ -4,6 +4,7 @@ namespace Database\Seeders;
 
 use App\Models\User;
 use App\Models\Portfolio;
+use App\Models\Layanan;
 use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
 
@@ -113,5 +114,63 @@ class DatabaseSeeder extends Seeder
                 'tahun' => '2021',
             ]);
         }
+
+        // Seed initial layanan (services)
+        if (Layanan::count() === 0) {
+            Layanan::create([
+                'judul' => 'Desain Arsitektur',
+                'deskripsi' => 'Desain custom sesuai keinginan Anda dengan mempertimbangkan fungsi, estetika, dan efisiensi energi terbaik. Tim arsitek profesional kami siap mewujudkan visi Anda.',
+                'fitur_1' => 'Konsultasi desain gratis',
+                'fitur_2' => 'Render 3D berkualitas tinggi',
+                'fitur_3' => 'Desain berkelanjutan',
+                'icon_color' => 'var(--primary)',
+            ]);
+
+            Layanan::create([
+                'judul' => 'Konstruksi',
+                'deskripsi' => 'Pelaksanaan pembangunan dengan standar kualitas tinggi, material terbaik, dan timeline terjamin sesuai jadwal proyek.',
+                'fitur_1' => 'Material berstandar internasional',
+                'fitur_2' => 'Supervisi ketat setiap tahap',
+                'fitur_3' => 'Garansi struktur bangunan',
+                'icon_color' => 'var(--accent)',
+            ]);
+
+            Layanan::create([
+                'judul' => 'Interior Design',
+                'deskripsi' => 'Desain interior yang nyaman, fungsional, dan mencerminkan kepribadian Anda dengan furniture modern dan tren terkini.',
+                'fitur_1' => 'Konsep desain personal',
+                'fitur_2' => 'Furniture premium pilihan',
+                'fitur_3' => 'Smart home integration',
+                'icon_color' => '#9b59b6',
+            ]);
+
+            Layanan::create([
+                'judul' => 'Renovasi',
+                'deskripsi' => 'Layanan renovasi rumah, kantor, dan toko dengan hasil memuaskan dan sesuai dengan budget Anda.',
+                'fitur_1' => 'Renovasi partial atau total',
+                'fitur_2' => 'Harga kompetitif & fleksibel',
+                'fitur_3' => 'Minimal downtime operasional',
+                'icon_color' => '#27ae60',
+            ]);
+
+            Layanan::create([
+                'judul' => 'Desain Komersial',
+                'deskripsi' => 'Desain swalayan, café, dan toko yang menarik untuk meningkatkan daya tarik dan pengalaman pelanggan bisnis Anda.',
+                'fitur_1' => 'Analisis layout optimal',
+                'fitur_2' => 'Branding visual profesional',
+                'fitur_3' => 'Efisiensi operasional maksimal',
+                'icon_color' => '#f39c12',
+            ]);
+
+            Layanan::create([
+                'judul' => 'Proyek Spesial',
+                'deskripsi' => 'Pembangunan masjid, gedung, dan bangunan khusus dengan detail dan presisi tinggi yang sempurna sesuai kebutuhan.',
+                'fitur_1' => 'Keahlian khusus per jenis',
+                'fitur_2' => 'Detail finishing premium',
+                'fitur_3' => 'Sertifikat kelayakan lengkap',
+                'icon_color' => '#16a085',
+            ]);
+        }
     }
 }
+

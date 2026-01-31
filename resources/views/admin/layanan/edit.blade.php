@@ -70,7 +70,11 @@
                         </div>
                         <div class="mb-3">
                             <label class="form-label">Warna Icon</label>
-                            <input type="text" name="icon_color" class="form-control @error('icon_color') is-invalid @enderror" value="{{ old('icon_color', $layanan->icon_color) }}">
+                            <select name="icon_color" class="form-select @error('icon_color') is-invalid @enderror" required>
+                                @foreach($colors as $value => $label)
+                                    <option value="{{ $value }}" {{ old('icon_color', $layanan->icon_color) == $value ? 'selected' : '' }}>{{ $label }}</option>
+                                @endforeach
+                            </select>
                             @error('icon_color') <span class="invalid-feedback">{{ $message }}</span> @enderror
                         </div>
                         <div class="d-flex gap-2">

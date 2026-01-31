@@ -22,7 +22,15 @@ class LayananController extends Controller
      */
     public function create()
     {
-        return view('admin.layanan.create');
+        $colors = [
+            'var(--primary)' => 'Biru (Default)',
+            'var(--accent)' => 'Orange (Accent)',
+            '#9b59b6' => 'Purple',
+            '#27ae60' => 'Green',
+            '#f39c12' => 'Gold',
+            '#16a085' => 'Teal',
+        ];
+        return view('admin.layanan.create', compact('colors'));
     }
 
     /**
@@ -57,7 +65,15 @@ class LayananController extends Controller
      */
     public function edit(Layanan $layanan)
     {
-        return view('admin.layanan.edit', compact('layanan'));
+        $colors = [
+            'var(--primary)' => 'Biru (Default)',
+            'var(--accent)' => 'Orange (Accent)',
+            '#9b59b6' => 'Purple',
+            '#27ae60' => 'Green',
+            '#f39c12' => 'Gold',
+            '#16a085' => 'Teal',
+        ];
+        return view('admin.layanan.edit', compact('layanan', 'colors'));
     }
 
     /**

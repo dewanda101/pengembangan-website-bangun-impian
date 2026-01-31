@@ -15,165 +15,82 @@
     <section class="layanan-section py-5">
         <div class="container">
             <div class="row g-4">
-                <!-- Desain Arsitektur -->
-                <div class="col-md-6 col-lg-4">
-                    <div class="service-card" style="background: white; border-radius: 12px; overflow: hidden; box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1); transition: all 0.3s ease; cursor: pointer;" onmouseover="this.style.transform='translateY(-10px)'; this.style.boxShadow='0 8px 25px rgba(0, 0, 0, 0.15)'" onmouseout="this.style.transform='translateY(0)'; this.style.boxShadow='0 4px 12px rgba(0, 0, 0, 0.1)'">
-                        <div class="card-header" style="background: linear-gradient(135deg, var(--primary) 0%, #1e4556 100%); padding: 3rem; text-align: center; color: white;">
-                            <div style="width:64px; height:64px; margin:0 auto 1rem; display:flex; align-items:center; justify-content:center;">
-                                <svg width="64" height="64" viewBox="0 0 64 64" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true" role="img">
-                                    <defs>
-                                        <linearGradient id="g1" x1="0" x2="1" y1="0" y2="1">
-                                            <stop offset="0" stop-color="#ffffff" stop-opacity="0.95"/>
-                                            <stop offset="1" stop-color="#ffffff" stop-opacity="0.75"/>
-                                        </linearGradient>
-                                    </defs>
-                                    <rect x="4" y="4" width="56" height="56" rx="10" fill="none" />
-                                    <circle cx="32" cy="20" r="9" stroke="rgba(255,255,255,0.95)" stroke-width="2" fill="none" />
-                                    <path d="M32 29 L22 52" stroke="rgba(255,255,255,0.95)" stroke-width="2.6" stroke-linecap="round" />
-                                    <path d="M32 29 L42 52" stroke="rgba(255,255,255,0.95)" stroke-width="2.6" stroke-linecap="round" />
-                                    <circle cx="32" cy="20" r="2.4" fill="rgba(255,255,255,0.95)" />
-                                    <rect x="18" y="50" width="6" height="4" rx="1.2" fill="rgba(255,255,255,0.95)" />
-                                    <rect x="40" y="50" width="6" height="4" rx="1.2" fill="rgba(255,255,255,0.95)" />
-                                </svg>
+                @forelse(\App\Models\Layanan::all() as $layanan)
+                    <div class="col-md-6 col-lg-4">
+                        <div class="service-card" style="background: white; border-radius: 12px; overflow: hidden; box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1); transition: all 0.3s ease; cursor: pointer;" onmouseover="this.style.transform='translateY(-10px)'; this.style.boxShadow='0 8px 25px rgba(0, 0, 0, 0.15)'" onmouseout="this.style.transform='translateY(0)'; this.style.boxShadow='0 4px 12px rgba(0, 0, 0, 0.1)'">
+                            <div class="card-header" style="background: linear-gradient(135deg, {{ $layanan->icon_color }} 0%, rgba(0,0,0,0.1) 100%); padding: 3rem; text-align: center; color: white;">
+                                <div style="width:64px; height:64px; margin:0 auto 1rem; display:flex; align-items:center; justify-content:center;">
+                                    <svg width="64" height="64" viewBox="0 0 64 64" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true" role="img">
+                                        @php
+                                            // Choose different icon SVG based on service title
+                                            $iconNum = ($loop->index % 6) + 1;
+                                        @endphp
+                                        @if($iconNum == 1)
+                                            <!-- Desain Arsitektur Icon -->
+                                            <defs>
+                                                <linearGradient id="g{{ $loop->index }}" x1="0" x2="1" y1="0" y2="1">
+                                                    <stop offset="0" stop-color="#ffffff" stop-opacity="0.95"/>
+                                                    <stop offset="1" stop-color="#ffffff" stop-opacity="0.75"/>
+                                                </linearGradient>
+                                            </defs>
+                                            <rect x="4" y="4" width="56" height="56" rx="10" fill="none" />
+                                            <circle cx="32" cy="20" r="9" stroke="rgba(255,255,255,0.95)" stroke-width="2" fill="none" />
+                                            <path d="M32 29 L22 52" stroke="rgba(255,255,255,0.95)" stroke-width="2.6" stroke-linecap="round" />
+                                            <path d="M32 29 L42 52" stroke="rgba(255,255,255,0.95)" stroke-width="2.6" stroke-linecap="round" />
+                                            <circle cx="32" cy="20" r="2.4" fill="rgba(255,255,255,0.95)" />
+                                            <rect x="18" y="50" width="6" height="4" rx="1.2" fill="rgba(255,255,255,0.95)" />
+                                            <rect x="40" y="50" width="6" height="4" rx="1.2" fill="rgba(255,255,255,0.95)" />
+                                        @elseif($iconNum == 2)
+                                            <!-- Konstruksi Icon -->
+                                            <path d="M10 54h44" stroke="rgba(255,255,255,0.95)" stroke-width="3" stroke-linecap="round" />
+                                            <rect x="16" y="30" width="6" height="18" rx="1" fill="rgba(255,255,255,0.95)" />
+                                            <rect x="30" y="22" width="6" height="26" rx="1" fill="rgba(255,255,255,0.95)" />
+                                            <rect x="44" y="26" width="4" height="22" rx="1" fill="rgba(255,255,255,0.95)" />
+                                            <path d="M18 30 L44 18 L50 22" stroke="rgba(255,255,255,0.95)" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" />
+                                        @elseif($iconNum == 3)
+                                            <!-- Interior Design Icon -->
+                                            <path d="M46 22a10 10 0 1 0-20 6c0 3.3 2.7 6 6 6 2.2 0 4.2-1.2 5.5-3 0 0 6.8-0.8 8.5-2.5A4 4 0 0 0 46 22z" stroke="rgba(255,255,255,0.95)" stroke-width="2" stroke-linejoin="round" fill="none" />
+                                            <circle cx="34" cy="24" r="2" fill="rgba(255,255,255,0.95)" />
+                                            <circle cx="40" cy="30" r="2" fill="rgba(255,255,255,0.95)" />
+                                            <path d="M22 44c6-2 10-6 12-10" stroke="rgba(255,255,255,0.95)" stroke-width="2.4" stroke-linecap="round" />
+                                        @elseif($iconNum == 4)
+                                            <!-- Renovasi Icon -->
+                                            <path d="M18 44 L28 34" stroke="rgba(255,255,255,0.95)" stroke-width="3" stroke-linecap="round" />
+                                            <path d="M22 40 L32 50" stroke="rgba(255,255,255,0.95)" stroke-width="3" stroke-linecap="round" />
+                                            <rect x="34" y="20" width="18" height="10" rx="2" transform="rotate(25 34 20)" fill="rgba(255,255,255,0.95)" />
+                                            <path d="M44 20 L52 28" stroke="rgba(255,255,255,0.95)" stroke-width="2" stroke-linecap="round" />
+                                        @elseif($iconNum == 5)
+                                            <!-- Desain Komersial Icon -->
+                                            <rect x="16" y="18" width="12" height="30" rx="1.6" stroke="rgba(255,255,255,0.95)" stroke-width="2" fill="none" />
+                                            <rect x="30" y="12" width="18" height="36" rx="1.6" stroke="rgba(255,255,255,0.95)" stroke-width="2" fill="none" />
+                                            <path d="M14 50h36" stroke="rgba(255,255,255,0.95)" stroke-width="2.6" stroke-linecap="round" />
+                                            <circle cx="36" cy="22" r="1.6" fill="rgba(255,255,255,0.95)" />
+                                            <circle cx="36" cy="30" r="1.6" fill="rgba(255,255,255,0.95)" />
+                                        @else
+                                            <!-- Proyek Spesial Icon -->
+                                            <path d="M32 18c8 0 12 6 12 6s-4 6-12 6-12-6-12-6 4-6 12-6z" stroke="rgba(255,255,255,0.95)" stroke-width="2.2" fill="none" />
+                                            <path d="M20 34v10h24V34" stroke="rgba(255,255,255,0.95)" stroke-width="2.4" stroke-linecap="round" fill="none" />
+                                            <rect x="30" y="8" width="4" height="8" rx="1" fill="rgba(255,255,255,0.95)" />
+                                        @endif
+                                    </svg>
+                                </div>
+                                <h4 style="font-weight: 700;">{{ $layanan->judul }}</h4>
                             </div>
-                            <h4 style="font-weight: 700;">Desain Arsitektur</h4>
-                        </div>
-                        <div class="card-content" style="padding: 2rem;">
-                            <p style="color: #666; line-height: 1.8;">Desain custom sesuai keinginan Anda dengan mempertimbangkan fungsi, estetika, dan efisiensi energi terbaik. Tim arsitek profesional kami siap mewujudkan visi Anda.</p>
-                            <ul style="color: #666; margin-top: 1.5rem; padding-left: 1.5rem;">
-                                <li>Konsultasi desain gratis</li>
-                                <li>Render 3D berkualitas tinggi</li>
-                                <li>Desain berkelanjutan</li>
-                            </ul>
+                            <div class="card-content" style="padding: 2rem;">
+                                <p style="color: #666; line-height: 1.8;">{{ $layanan->deskripsi }}</p>
+                                <ul style="color: #666; margin-top: 1.5rem; padding-left: 1.5rem;">
+                                    <li>{{ $layanan->fitur_1 }}</li>
+                                    <li>{{ $layanan->fitur_2 }}</li>
+                                    <li>{{ $layanan->fitur_3 }}</li>
+                                </ul>
+                            </div>
                         </div>
                     </div>
-                </div>
-
-                <!-- Konstruksi -->
-                <div class="col-md-6 col-lg-4">
-                    <div class="service-card" style="background: white; border-radius: 12px; overflow: hidden; box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1); transition: all 0.3s ease; cursor: pointer;" onmouseover="this.style.transform='translateY(-10px)'; this.style.boxShadow='0 8px 25px rgba(0, 0, 0, 0.15)'" onmouseout="this.style.transform='translateY(0)'; this.style.boxShadow='0 4px 12px rgba(0, 0, 0, 0.1)'">
-                        <div class="card-header" style="background: linear-gradient(135deg, var(--accent) 0%, #d35400 100%); padding: 3rem; text-align: center; color: white;">
-                            <div style="width:64px; height:64px; margin:0 auto 1rem; display:flex; align-items:center; justify-content:center;">
-                                <svg width="64" height="64" viewBox="0 0 64 64" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true" role="img">
-                                    <path d="M10 54h44" stroke="rgba(255,255,255,0.95)" stroke-width="3" stroke-linecap="round" />
-                                    <rect x="16" y="30" width="6" height="18" rx="1" fill="rgba(255,255,255,0.95)" />
-                                    <rect x="30" y="22" width="6" height="26" rx="1" fill="rgba(255,255,255,0.95)" />
-                                    <rect x="44" y="26" width="4" height="22" rx="1" fill="rgba(255,255,255,0.95)" />
-                                    <path d="M18 30 L44 18 L50 22" stroke="rgba(255,255,255,0.95)" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" />
-                                </svg>
-                            </div>
-                            <h4 style="font-weight: 700;">Konstruksi</h4>
-                        </div>
-                        <div class="card-content" style="padding: 2rem;">
-                            <p style="color: #666; line-height: 1.8;">Pelaksanaan pembangunan dengan standar kualitas tinggi, material terbaik, dan timeline terjamin sesuai jadwal proyek.</p>
-                            <ul style="color: #666; margin-top: 1.5rem; padding-left: 1.5rem;">
-                                <li>Material berstandar internasional</li>
-                                <li>Supervisi ketat setiap tahap</li>
-                                <li>Garansi struktur bangunan</li>
-                            </ul>
-                        </div>
+                @empty
+                    <div class="col-12" style="text-align: center; padding: 3rem;">
+                        <p style="color: #666; font-size: 1.1rem;">Layanan sedang dimuat. Kembali lagi nanti!</p>
                     </div>
-                </div>
-
-                <!-- Interior Design -->
-                <div class="col-md-6 col-lg-4">
-                    <div class="service-card" style="background: white; border-radius: 12px; overflow: hidden; box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1); transition: all 0.3s ease; cursor: pointer;" onmouseover="this.style.transform='translateY(-10px)'; this.style.boxShadow='0 8px 25px rgba(0, 0, 0, 0.15)'" onmouseout="this.style.transform='translateY(0)'; this.style.boxShadow='0 4px 12px rgba(0, 0, 0, 0.1)'">
-                        <div class="card-header" style="background: linear-gradient(135deg, #9b59b6 0%, #8e44ad 100%); padding: 3rem; text-align: center; color: white;">
-                            <div style="width:64px; height:64px; margin:0 auto 1rem; display:flex; align-items:center; justify-content:center;">
-                                <svg width="64" height="64" viewBox="0 0 64 64" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true" role="img">
-                                    <path d="M46 22a10 10 0 1 0-20 6c0 3.3 2.7 6 6 6 2.2 0 4.2-1.2 5.5-3 0 0 6.8-0.8 8.5-2.5A4 4 0 0 0 46 22z" stroke="rgba(255,255,255,0.95)" stroke-width="2" stroke-linejoin="round" fill="none" />
-                                    <circle cx="34" cy="24" r="2" fill="rgba(255,255,255,0.95)" />
-                                    <circle cx="40" cy="30" r="2" fill="rgba(255,255,255,0.95)" />
-                                    <path d="M22 44c6-2 10-6 12-10" stroke="rgba(255,255,255,0.95)" stroke-width="2.4" stroke-linecap="round" />
-                                </svg>
-                            </div>
-                            <h4 style="font-weight: 700;">Interior Design</h4>
-                        </div>
-                        <div class="card-content" style="padding: 2rem;">
-                            <p style="color: #666; line-height: 1.8;">Desain interior yang nyaman, fungsional, dan mencerminkan kepribadian Anda dengan furniture modern dan tren terkini.</p>
-                            <ul style="color: #666; margin-top: 1.5rem; padding-left: 1.5rem;">
-                                <li>Konsep desain personal</li>
-                                <li>Furniture premium pilihan</li>
-                                <li>Smart home integration</li>
-                            </ul>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Renovasi -->
-                <div class="col-md-6 col-lg-4">
-                    <div class="service-card" style="background: white; border-radius: 12px; overflow: hidden; box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1); transition: all 0.3s ease; cursor: pointer;" onmouseover="this.style.transform='translateY(-10px)'; this.style.boxShadow='0 8px 25px rgba(0, 0, 0, 0.15)'" onmouseout="this.style.transform='translateY(0)'; this.style.boxShadow='0 4px 12px rgba(0, 0, 0, 0.1)'">
-                        <div class="card-header" style="background: linear-gradient(135deg, #27ae60 0%, #229954 100%); padding: 3rem; text-align: center; color: white;">
-                            <div style="width:64px; height:64px; margin:0 auto 1rem; display:flex; align-items:center; justify-content:center;">
-                                <svg width="64" height="64" viewBox="0 0 64 64" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true" role="img">
-                                    <path d="M18 44 L28 34" stroke="rgba(255,255,255,0.95)" stroke-width="3" stroke-linecap="round" />
-                                    <path d="M22 40 L32 50" stroke="rgba(255,255,255,0.95)" stroke-width="3" stroke-linecap="round" />
-                                    <rect x="34" y="20" width="18" height="10" rx="2" transform="rotate(25 34 20)" fill="rgba(255,255,255,0.95)" />
-                                    <path d="M44 20 L52 28" stroke="rgba(255,255,255,0.95)" stroke-width="2" stroke-linecap="round" />
-                                </svg>
-                            </div>
-                            <h4 style="font-weight: 700;">Renovasi</h4>
-                        </div>
-                        <div class="card-content" style="padding: 2rem;">
-                            <p style="color: #666; line-height: 1.8;">Layanan renovasi rumah, kantor, dan toko dengan hasil memuaskan dan sesuai dengan budget Anda.</p>
-                            <ul style="color: #666; margin-top: 1.5rem; padding-left: 1.5rem;">
-                                <li>Renovasi partial atau total</li>
-                                <li>Harga kompetitif & fleksibel</li>
-                                <li>Minimal downtime operasional</li>
-                            </ul>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Desain Komersial -->
-                <div class="col-md-6 col-lg-4">
-                    <div class="service-card" style="background: white; border-radius: 12px; overflow: hidden; box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1); transition: all 0.3s ease; cursor: pointer;" onmouseover="this.style.transform='translateY(-10px)'; this.style.boxShadow='0 8px 25px rgba(0, 0, 0, 0.15)'" onmouseout="this.style.transform='translateY(0)'; this.style.boxShadow='0 4px 12px rgba(0, 0, 0, 0.1)'">
-                        <div class="card-header" style="background: linear-gradient(135deg, #f39c12 0%, #e67e22 100%); padding: 3rem; text-align: center; color: white;">
-                            <div style="width:64px; height:64px; margin:0 auto 1rem; display:flex; align-items:center; justify-content:center;">
-                                <svg width="64" height="64" viewBox="0 0 64 64" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true" role="img">
-                                    <rect x="16" y="18" width="12" height="30" rx="1.6" stroke="rgba(255,255,255,0.95)" stroke-width="2" fill="none" />
-                                    <rect x="30" y="12" width="18" height="36" rx="1.6" stroke="rgba(255,255,255,0.95)" stroke-width="2" fill="none" />
-                                    <path d="M14 50h36" stroke="rgba(255,255,255,0.95)" stroke-width="2.6" stroke-linecap="round" />
-                                    <circle cx="36" cy="22" r="1.6" fill="rgba(255,255,255,0.95)" />
-                                    <circle cx="36" cy="30" r="1.6" fill="rgba(255,255,255,0.95)" />
-                                </svg>
-                            </div>
-                            <h4 style="font-weight: 700;">Desain Komersial</h4>
-                        </div>
-                        <div class="card-content" style="padding: 2rem;">
-                            <p style="color: #666; line-height: 1.8;">Desain swalayan, café, dan toko yang menarik untuk meningkatkan daya tarik dan pengalaman pelanggan bisnis Anda.</p>
-                            <ul style="color: #666; margin-top: 1.5rem; padding-left: 1.5rem;">
-                                <li>Analisis layout optimal</li>
-                                <li>Branding visual profesional</li>
-                                <li>Efisiensi operasional maksimal</li>
-                            </ul>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Proyek Spesial -->
-                <div class="col-md-6 col-lg-4">
-                    <div class="service-card" style="background: white; border-radius: 12px; overflow: hidden; box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1); transition: all 0.3s ease; cursor: pointer;" onmouseover="this.style.transform='translateY(-10px)'; this.style.boxShadow='0 8px 25px rgba(0, 0, 0, 0.15)'" onmouseout="this.style.transform='translateY(0)'; this.style.boxShadow='0 4px 12px rgba(0, 0, 0, 0.1)'">
-                        <div class="card-header" style="background: linear-gradient(135deg, #16a085 0%, #138d75 100%); padding: 3rem; text-align: center; color: white;">
-                            <div style="width:64px; height:64px; margin:0 auto 1rem; display:flex; align-items:center; justify-content:center;">
-                                <svg width="64" height="64" viewBox="0 0 64 64" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true" role="img">
-                                    <path d="M32 18c8 0 12 6 12 6s-4 6-12 6-12-6-12-6 4-6 12-6z" stroke="rgba(255,255,255,0.95)" stroke-width="2.2" fill="none" />
-                                    <path d="M20 34v10h24V34" stroke="rgba(255,255,255,0.95)" stroke-width="2.4" stroke-linecap="round" fill="none" />
-                                    <rect x="30" y="8" width="4" height="8" rx="1" fill="rgba(255,255,255,0.95)" />
-                                </svg>
-                            </div>
-                            <h4 style="font-weight: 700;">Proyek Spesial</h4>
-                        </div>
-                        <div class="card-content" style="padding: 2rem;">
-                            <p style="color: #666; line-height: 1.8;">Pembangunan masjid, gedung, dan bangunan khusus dengan detail dan presisi tinggi yang sempurna sesuai kebutuhan.</p>
-                            <ul style="color: #666; margin-top: 1.5rem; padding-left: 1.5rem;">
-                                <li>Keahlian khusus per jenis</li>
-                                <li>Detail finishing premium</li>
-                                <li>Sertifikat kelayakan lengkap</li>
-                            </ul>
-                        </div>
-                    </div>
-                </div>
+                @endforelse
             </div>
         </div>
     </section>
