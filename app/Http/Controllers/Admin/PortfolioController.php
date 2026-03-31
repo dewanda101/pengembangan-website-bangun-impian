@@ -12,12 +12,12 @@ class PortfolioController extends Controller
     /**
      * Display a listing of the resource.
      */
-    public function index()
-    {
-        $portfolios = Portfolio::latest()->paginate(10);
-        return view('admin.portfolio.index', compact('portfolios'));
-    }
-
+   public function index()
+{
+    // Menggunakan paginate(50) agar halaman tetap ringkas 
+    $portfolios = Portfolio::latest()->paginate(50);
+    return view('admin.portfolio.index', compact('portfolios'));
+}
     /**
      * Show the form for creating a new resource.
      */

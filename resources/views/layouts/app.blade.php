@@ -452,10 +452,10 @@
     </nav>
 
     <!-- PAGE CONTENT -->
-    @yield('content')
+    @yield('content')  
 
     <!-- WHATSAPP BUTTON -->
-    <a href="https://wa.me/6285733867375?text=Halo%20BangunImpian%20saya%20ingin%20konsultasi" 
+    <a href="https://wa.me/6281331135822?text=Halo%20BangunImpian%20saya%20ingin%20konsultasi%20mengenai%20jasa%20konstruksi%20dan%20desain%20bangunan." 
        target="_blank" title="Chat WhatsApp" class="whatsapp-button">
         <i class="fab fa-whatsapp"></i>
     </a>
@@ -479,7 +479,7 @@
                 </div>
                 <div class="col-md-4 mb-4">
                     <h5>Kontak</h5>
-                    <p>📞 <a href="tel:+6285733867375">+62 857 3386 7375</a></p>
+                    <p>📞 <a href="tel:+6285733867375">+62 813 3113 5822</a></p>
                     <p>📧 <a href="mailto:info@bangunimpian.com">infobangunimpian@gmail.com</a></p>
                     <p>📍 Jl. Pakis 2 No 16, Surabaya</p>
                 </div>

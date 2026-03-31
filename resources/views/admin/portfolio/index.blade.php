@@ -5,138 +5,231 @@
 @section('content')
 @push('styles')
 <style>
-    /* Compact pagination */
-    .pagination { margin: 0; }
-    .pagination .page-item { margin: 0 0.15rem; }
+    /* ===== GLOBAL LOCK ===== */
+    body, html {
+        overflow-x: hidden;
+    }
+
+    .container-fluid {
+        max-width: 100%;
+        overflow-x: hidden;
+    }
+
+    /* ===== SIDEBAR ===== */
+    .admin-sidebar {
+        width: 240px;
+        position: fixed;
+        top: 0;
+        left: 0;
+        height: 100vh;
+        overflow-y: auto;
+        z-index: 1000;
+    }
+
+    /* ===== MAIN CONTENT ===== */
+    .admin-main {
+        margin-left: 240px;
+        max-width: calc(100% - 240px);
+        padding: 24px;
+        overflow-x: hidden;
+    }
+
+    /* ===== CONTENT WRAPPER ===== */
+    .portfolio-wrapper {
+        background: #fff;
+        border-radius: 12px;
+        padding: 24px;
+        box-shadow: 0 4px 16px rgba(0,0,0,0.06);
+        width: 100%;
+        overflow: hidden;
+    }
+
+    /* ===== CARD ===== */
+    .card {
+        max-width: 100%;
+    }
+
+    .card-img-top {
+        height: 180px;
+        object-fit: cover;
+    }
+
+    .card-title {
+        font-size: 1.05rem;
+        font-weight: 700;
+        color: var(--primary);
+    }
+
+    .card-text {
+        font-size: 0.9rem;
+        color: #555;
+        line-height: 1.5;
+    }
+
+    .card-footer-custom {
+        border-top: 1px solid #eee;
+        padding-top: 10px;
+        margin-top: 12px;
+    }
+
+    /* ===== GRID FIX ===== */
+    .row {
+        margin-left: 0;
+        margin-right: 0;
+    }
+
+    /* ===== PAGINATION ===== */
     .pagination .page-link {
-        padding: 0.25rem 0.5rem;
-        font-size: 0.92rem;
         min-width: 36px;
         height: 36px;
-        display: inline-flex;
+        display: flex;
         align-items: center;
         justify-content: center;
         border-radius: 6px;
     }
-    /* Slightly reduce card image height on small screens */
-    @media (max-width: 767px) {
-        .card-img-top { height: 140px !important; }
-    }
-    /* Make action buttons compact */
-    .btn-group .btn { padding: .35rem .5rem; font-size: .9rem; }
-    /* Pagination visuals */
-    .pagination .page-item.active .page-link {
+
+    .pagination .active .page-link {
         background: var(--primary);
         border-color: var(--primary);
         color: #fff;
-        box-shadow: 0 2px 6px rgba(42,95,127,0.12);
     }
-    .pagination .page-link { color: var(--primary); }
-    .pagination .page-item.disabled .page-link { color: #bdbdbd; }
+
+    /* ===== MOBILE ===== */
+    @media (max-width: 768px) {
+        .admin-sidebar {
+            position: relative;
+            width: 100%;
+            height: auto;
+        }
+
+        .admin-main {
+            margin-left: 0;
+            max-width: 100%;
+            padding: 16px;
+        }
+    }
 </style>
 @endpush
+
 <div class="container-fluid">
     <div class="row">
+        {{-- SIDEBAR --}}
         <aside class="admin-sidebar d-none d-md-block">
             <div class="text-white mb-4 text-center" style="font-weight:700; font-size:1.1rem;">
                 <i class="fas fa-building"></i> ADMIN
             </div>
             <nav class="nav flex-column">
-                <a class="nav-link text-white" href="{{ route('admin.dashboard') }}"> <i class="fas fa-tachometer-alt me-2"></i> Dashboard</a>
-                <a class="nav-link text-white" href="{{ route('admin.kontak.index') }}"> <i class="fas fa-envelope me-2"></i> Pesan Kontak</a>
-                <a class="nav-link text-white active" href="{{ route('admin.portfolio.index') }}"> <i class="fas fa-images me-2"></i> Portfolio</a>
-                <a class="nav-link text-white" href="{{ route('admin.layanan.index') }}"> <i class="fas fa-cogs me-2"></i> Layanan</a>
+                <a class="nav-link text-white" href="{{ route('admin.dashboard') }}">
+                    <i class="fas fa-tachometer-alt me-2"></i> Dashboard
+                </a>
+                <a class="nav-link text-white" href="{{ route('admin.kontak.index') }}">
+                    <i class="fas fa-envelope me-2"></i> Pesan Kontak
+                </a>
+                <a class="nav-link text-white active" href="{{ route('admin.portfolio.index') }}">
+                    <i class="fas fa-images me-2"></i> Portfolio
+                </a>
+                <a class="nav-link text-white" href="{{ route('admin.layanan.index') }}">
+                    <i class="fas fa-cogs me-2"></i> Layanan
+                </a>
                 <hr style="border-color: rgba(255,255,255,0.15);">
-                <a class="nav-link" style="color:var(--accent);" href="{{ route('home') }}"><i class="fas fa-external-link-alt me-2"></i> Kembali ke Website</a>
+                <a class="nav-link" style="color:var(--accent);" href="{{ route('home') }}">
+                    <i class="fas fa-external-link-alt me-2"></i> Kembali ke Website
+                </a>
             </nav>
         </aside>
 
-        <main class="admin-main col ps-4">
-            <div class="d-flex align-items-center justify-content-between mb-4">
+        {{-- MAIN --}}
+        <main class="admin-main">
+            <div class="d-flex justify-content-between align-items-center mb-4">
                 <div>
-                    <h1 class="h3 mb-0" style="color:var(--primary); font-weight:700;">Kelola Portfolio</h1>
-                    <small class="text-muted">Kelola konten proyek portofolio yang ditampilkan di website.</small>
+                    <h1 class="h3 mb-0" style="font-weight:700;">Kelola Portfolio</h1>
+                    <small class="text-muted">
+                        Kelola konten proyek portofolio yang ditampilkan di website.
+                    </small>
                 </div>
-                <div class="d-flex gap-2 align-items-center">
-                    <a href="{{ route('admin.portfolio.create') }}" class="btn btn-primary">
-                        <i class="fas fa-plus me-1"></i> Tambah Portfolio
-                    </a>
-                </div>
+                <a href="{{ route('admin.portfolio.create') }}" class="btn btn-primary">
+                    <i class="fas fa-plus me-1"></i> Tambah Portfolio
+                </a>
             </div>
 
-            @if($message = Session::get('success'))
-                <div class="alert alert-success"> <i class="fas fa-check-circle me-2"></i> {{ $message }}</div>
+            @if(session('success'))
+                <div class="alert alert-success">
+                    <i class="fas fa-check-circle me-2"></i>
+                    {{ session('success') }}
+                </div>
             @endif
 
-            <div class="row row-cols-1 row-cols-md-2 row-cols-lg-3 g-4">
-                @forelse($portfolios as $portfolio)
-                    <div class="col">
-                        <div class="card h-100 shadow-sm">
-                            @if($portfolio->gambar)
-                                <img src="{{ asset('storage/' . $portfolio->gambar) }}" class="card-img-top" style="height:180px; object-fit:cover;" alt="{{ $portfolio->judul }}">
-                            @else
-                                <div class="bg-light d-flex align-items-center justify-content-center" style="height:180px;">
-                                    <i class="fas fa-image fa-2x text-muted"></i>
-                                </div>
-                            @endif
-                            <div class="card-body d-flex flex-column">
-                                <h5 class="card-title" style="color:var(--primary); font-weight:700;">{{ $portfolio->judul }}</h5>
-                                <p class="text-muted mb-2" style="font-size:0.9rem;"><strong>Kategori:</strong> {{ $portfolio->kategori }} &nbsp; • &nbsp; <strong>Tahun:</strong> {{ $portfolio->tahun }}</p>
-                                <p class="card-text text-truncate" style="line-height:1.5;">{{ $portfolio->deskripsi }}</p>
-                                <div class="mt-auto d-flex justify-content-between align-items-center">
-                                    <div class="text-muted" style="font-size:0.9rem;">Luas: {{ $portfolio->luas }}</div>
-                                    <div class="btn-group">
-                                        <a href="{{ route('admin.portfolio.edit', $portfolio) }}" class="btn btn-sm btn-outline-warning" title="Edit"><i class="fas fa-edit"></i></a>
-                                        <form action="{{ route('admin.portfolio.destroy', $portfolio) }}" method="POST" onsubmit="return confirm('Yakin ingin menghapus portfolio ini?');">
-                                            @csrf @method('DELETE')
-                                            <button class="btn btn-sm btn-outline-danger" title="Hapus"><i class="fas fa-trash"></i></button>
-                                        </form>
+            <div class="portfolio-wrapper">
+                <div class="row row-cols-1 row-cols-md-2 row-cols-lg-3 g-4">
+                    @forelse($portfolios as $portfolio)
+                        <div class="col">
+                            <div class="card h-100 shadow-sm">
+                                {{-- GAMBAR --}}
+                                @if($portfolio->gambar)
+                                    <img src="{{ asset('storage/' . $portfolio->gambar) }}"
+                                         class="card-img-top"
+                                         alt="{{ $portfolio->judul }}">
+                                @else
+                                    <div class="bg-light d-flex align-items-center justify-content-center"
+                                         style="height:180px;">
+                                        <i class="fas fa-image fa-2x text-muted"></i>
+                                    </div>
+                                @endif
+
+                                <div class="card-body d-flex flex-column">
+                                    <h5 class="card-title">{{ $portfolio->judul }}</h5>
+
+                                    <p class="text-muted mb-2" style="font-size:0.9rem;">
+                                        <strong>Kategori:</strong> {{ $portfolio->kategori }}
+                                        &nbsp;•&nbsp;
+                                        <strong>Tahun:</strong> {{ $portfolio->tahun }}
+                                    </p>
+
+                                    <p class="card-text text-truncate">
+                                        {{ $portfolio->deskripsi }}
+                                    </p>
+
+                                    <div class="card-footer-custom d-flex justify-content-between align-items-center mt-auto">
+                                        <span class="text-muted" style="font-size:0.9rem;">
+                                            Luas: {{ $portfolio->luas }}
+                                        </span>
+
+                                        <div class="btn-group">
+                                            <a href="{{ route('admin.portfolio.edit', $portfolio) }}"
+                                               class="btn btn-sm btn-outline-warning">
+                                                <i class="fas fa-edit"></i>
+                                            </a>
+                                            <form action="{{ route('admin.portfolio.destroy', $portfolio) }}"
+                                                  method="POST"
+                                                  onsubmit="return confirm('Yakin ingin menghapus portfolio ini?');">
+                                                @csrf
+                                                @method('DELETE')
+                                                <button class="btn btn-sm btn-outline-danger">
+                                                    <i class="fas fa-trash"></i>
+                                                </button>
+                                            </form>
+                                        </div>
                                     </div>
                                 </div>
                             </div>
                         </div>
-                    </div>
-                @empty
-                    <div class="col-12">
-                        <div class="card p-4 text-center text-muted">Belum ada portfolio.</div>
-                    </div>
-                @endforelse
+                    @empty
+                        <div class="col-12">
+                            <div class="text-center text-muted py-4">
+                                Belum ada portfolio.
+                            </div>
+                        </div>
+                    @endforelse
+                </div>
             </div>
 
-            <div class="d-flex justify-content-start mt-4">
-                @if ($portfolios->hasPages())
-                    <nav aria-label="Halaman portofolio">
-                        <ul class="pagination pagination-sm">
-                            {{-- Previous Page Link --}}
-                            @if ($portfolios->onFirstPage())
-                                <li class="page-item disabled"><span class="page-link"><i class="fas fa-chevron-left"></i></span></li>
-                            @else
-                                <li class="page-item"><a class="page-link" href="{{ $portfolios->previousPageUrl() }}" rel="prev"><i class="fas fa-chevron-left"></i></a></li>
-                            @endif
-
-                            {{-- Pagination Elements: show current +/-2 pages --}}
-                            @php
-                                $start = max(1, $portfolios->currentPage() - 2);
-                                $end = min($portfolios->lastPage(), $portfolios->currentPage() + 2);
-                            @endphp
-                            @for ($page = $start; $page <= $end; $page++)
-                                <li class="page-item {{ $page == $portfolios->currentPage() ? 'active' : '' }}">
-                                    <a class="page-link" href="{{ $portfolios->url($page) }}">{{ $page }}</a>
-                                </li>
-                            @endfor
-
-                            {{-- Next Page Link --}}
-                            @if ($portfolios->hasMorePages())
-                                <li class="page-item"><a class="page-link" href="{{ $portfolios->nextPageUrl() }}" rel="next"><i class="fas fa-chevron-right"></i></a></li>
-                            @else
-                                <li class="page-item disabled"><span class="page-link"><i class="fas fa-chevron-right"></i></span></li>
-                            @endif
-                        </ul>
-                    </nav>
-                @endif
-            </div>
+            {{-- PAGINATION --}}
+            @if($portfolios->hasPages())
+                <div class="mt-4">
+                    {{ $portfolios->links() }}
+                </div>
+            @endif
         </main>
     </div>
 </div>
-
 @endsection

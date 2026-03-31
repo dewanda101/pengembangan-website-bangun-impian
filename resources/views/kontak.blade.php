@@ -26,8 +26,8 @@
                         </div>
                         <div>
                             <h5 style="color: var(--primary); margin-bottom: 0.5rem; font-weight: 700;">Telepon</h5>
-                            <p style="color: #666; margin: 0; font-size: 1.1rem;"><a href="tel:+6285733867375" style="color: var(--accent); text-decoration: none; font-weight: 600;">+62 857 3386 7375</a></p>
-                            <p style="font-size: 0.9rem; color: #999; margin-top: 0.5rem;">Senin - Jumat: 08:00 - 17:00<br>Sabtu: 09:00 - 15:00</p>
+                            <p style="color: #666; margin: 0; font-size: 1.1rem;"><a href="tel:+6285733867375" style="color: var(--accent); text-decoration: none; font-weight: 600;">+62 813 3113 5822</a></p>
+                            <p style="font-size: 0.9rem; color: #999; margin-top: 0.5rem;">Senin - Minggu: 08:00 - 23:59<br>Sabtu: 08:00 - 23:59</p>
                         </div>
                     </div>
 
@@ -60,7 +60,7 @@
                         <ul style="color: #666; padding-left: 1.5rem; margin: 0;">
                             <li>Senin - Minggu: 08:00 - 23:59</li>
                             <li>Sabtu: 08:00 - 23:59</li>
-                            <li style="margin-top: 0.5rem; color: var(--primary); font-weight: 600;">Emergency: Bp Heri Setiawan — +62 857 3386 7375</li>
+                            <li style="margin-top: 0.5rem; color: var(--primary); font-weight: 600;">Emergency: Bp Heri Setiawan — +62  813 3113 5822</li>
                         </ul>
                     </div>
 
