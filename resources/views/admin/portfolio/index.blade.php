@@ -166,7 +166,7 @@
                             <div class="card h-100 shadow-sm">
                                 {{-- GAMBAR --}}
                                 @if($portfolio->gambar)
-                                    <img src="{{ asset('storage/' . $portfolio->gambar) }}"
+                                    <img src="{{ Storage::url($portfolio->gambar) }}"
                                          class="card-img-top"
                                          alt="{{ $portfolio->judul }}">
                                 @else

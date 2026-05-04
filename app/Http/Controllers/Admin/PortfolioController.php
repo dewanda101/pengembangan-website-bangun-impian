@@ -14,7 +14,7 @@ class PortfolioController extends Controller
      */
    public function index()
 {
-    // Menggunakan paginate(50) agar halaman tetap ringkas 
+    // Menggunakan paginate(50) agar halaman tetap ringkas
     $portfolios = Portfolio::latest()->paginate(50);
     return view('admin.portfolio.index', compact('portfolios'));
 }
@@ -38,7 +38,7 @@ class PortfolioController extends Controller
             'deskripsi' => 'required|string',
             'luas' => 'required|string|max:100',
             'tahun' => 'required|string|max:50',
-            'gambar' => 'nullable|image|mimes:jpeg,png,jpg,gif|max:2048',
+            'gambar' => 'nullable|image|mimetypes:image/jpeg,image/png,image/gif,image/webp|max:2048',
         ]);
 
         if ($request->hasFile('gambar')) {
@@ -79,7 +79,7 @@ class PortfolioController extends Controller
             'deskripsi' => 'required|string',
             'luas' => 'required|string|max:100',
             'tahun' => 'required|string|max:50',
-            'gambar' => 'nullable|image|mimes:jpeg,png,jpg,gif|max:2048',
+            'gambar' => 'nullable|image|mimetypes:image/jpeg,image/png,image/gif,image/webp|max:2048',
         ]);
 
         if ($request->hasFile('gambar')) {

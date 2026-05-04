@@ -81,8 +81,8 @@
                         </div>
                         <div class="mb-3">
                             <label class="form-label">Gambar</label>
-                            <input type="file" name="gambar" class="form-control @error('gambar') is-invalid @enderror" accept="image/*">
-                            <small style="color: #999;">Max 2MB, format: jpg, png, gif</small>
+                            <input type="file" name="gambar" class="form-control @error('gambar') is-invalid @enderror" accept=".jpg,.jpeg,.png,.gif,.webp,image/jpeg,image/png,image/gif,image/webp">
+                            <small style="color: #999;">Max 2MB, format: JPG, JPEG, PNG, GIF, WebP</small>
                             @error('gambar') <span class="invalid-feedback">{{ $message }}</span> @enderror
                         </div>
                         <div class="d-flex gap-2">

@@ -36,7 +36,7 @@
                     <div class="col-md-6 col-lg-4 portofolio-item" data-kategori="{{ strtolower($portfolio->kategori) }}">
                         <div class="portfolio-card" style="background: white; border-radius: 12px; overflow: hidden; box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1); transition: all 0.3s ease;" onmouseover="this.style.transform='scale(1.05)'; this.style.boxShadow='0 8px 25px rgba(0, 0, 0, 0.15)'" onmouseout="this.style.transform='scale(1)'; this.style.boxShadow='0 4px 12px rgba(0, 0, 0, 0.1)'">
                             @if($portfolio->gambar)
-                                <img src="{{ asset('storage/' . $portfolio->gambar) }}" alt="{{ $portfolio->nama_proyek }}" style="width: 100%; height: 280px; object-fit: cover;">
+                                <img src="{{ Storage::url($portfolio->gambar) }}" alt="{{ $portfolio->nama_proyek }}" style="width: 100%; height: 280px; object-fit: cover;">
                             @else
                                 <div style="width: 100%; height: 280px; background: linear-gradient(135deg, var(--primary) 0%, #1e4556 100%); display: flex; align-items: center; justify-content: center; color: white; font-size: 3rem;">
                                     <i class="fas fa-image"></i>
@@ -83,7 +83,7 @@
     <script>
         function filterPortofolio(kategori) {
             const items = document.querySelectorAll('.portofolio-item');
-            
+
             items.forEach(item => {
                 if (kategori === 'semua' || item.getAttribute('data-kategori') === kategori) {
                     item.style.display = 'block';

@@ -82,11 +82,11 @@
                             <label class="form-label">Gambar</label>
                             @if($portfolio->gambar)
                                 <div style="margin-bottom: 1rem;">
-                                    <img src="{{ asset('storage/' . $portfolio->gambar) }}" style="max-width: 200px; border-radius: 8px;">
+                                    <img src="{{ Storage::url($portfolio->gambar) }}" style="max-width: 200px; border-radius: 8px;">
                                 </div>
                             @endif
-                            <input type="file" name="gambar" class="form-control @error('gambar') is-invalid @enderror" accept="image/*">
-                            <small style="color: #999;">Biarkan kosong jika tidak ingin mengganti</small>
+                            <input type="file" name="gambar" class="form-control @error('gambar') is-invalid @enderror" accept=".jpg,.jpeg,.png,.gif,.webp,image/jpeg,image/png,image/gif,image/webp">
+                            <small style="color: #999;">Max 2MB, format: JPG, JPEG, PNG, GIF, WebP. Biarkan kosong jika tidak ingin mengganti</small>
                             @error('gambar') <span class="invalid-feedback">{{ $message }}</span> @enderror
                         </div>
                         <div class="d-flex gap-2">

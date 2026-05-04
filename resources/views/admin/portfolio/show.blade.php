@@ -25,7 +25,7 @@
                     <div class="col-lg-8 mx-auto">
                         <div class="card shadow-sm">
                             @if($portfolio->gambar)
-                                <img src="{{ asset('storage/' . $portfolio->gambar) }}" class="card-img-top" style="object-fit:cover; max-height:360px;">
+                                <img src="{{ Storage::url($portfolio->gambar) }}" class="card-img-top" style="object-fit:cover; max-height:360px;">
                             @endif
                             <div class="card-body">
                                 <h2 class="card-title">{{ $portfolio->judul }}</h2>
