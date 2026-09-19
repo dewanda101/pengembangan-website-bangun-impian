@@ -22,3 +22,15 @@
 Homestead.json
 Homestead.yaml
 Thumbs.db
+
+# WhatsApp Bot
+wa-bot/node_modules
+wa-bot/session
+wa-bot/.wwebjs_auth
+wa-bot/.wwebjs_cache
+
+# Debug scripts
+check_admin.php
+
+# Old/duplicate bot folder
+whatsapp-bot/
